@@ -1,0 +1,22 @@
+.bar {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    padding-left: 10px;
+    padding-right: 10px;
+
+    :global(.form-group) {
+        display: inline-block;
+        width: calc(100% - 100px - 10px);
+    }
+
+    :global(.btn-group) {
+        display: inline-block;
+        width: 100px;
+        margin-left: 10px;
+
+        input {
+            width: 100%;
+        }
+    }
+}

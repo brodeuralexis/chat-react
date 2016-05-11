@@ -1,0 +1,33 @@
+$border-size: 10px;
+
+.message {
+    display: inline-block;
+}
+
+.messageRoot {
+    text-align: left;
+}
+
+.current {
+    text-align: right;
+}
+
+.message {
+    background-color: #460A57;
+    color: white;
+    border-radius: $border-size;
+
+    .username {
+        background-color: #1B1B1B;
+        border-top-right-radius: $border-size;
+        border-top-left-radius: $border-size;
+        color: white;
+        width: 100%;
+        padding: 2px 20px;
+    }
+
+    .content {
+        width: 100%;
+        padding: 2px 20px;
+    }
+}

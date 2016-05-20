@@ -22,6 +22,8 @@ export default class Users extends React.Component {
     };
 
     render() {
+        // Il est impératif de ne pas faire cette opération dans "@Connect", car "Array.prototype.filer" vas
+        // toujours retourner un nouveau tableau, rendant "@PureRender" inutile.
         const users = this.props.users.filter(user => user.id !== this.props.currentUser.id);
 
         return (

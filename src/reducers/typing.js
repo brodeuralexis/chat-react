@@ -11,6 +11,7 @@ export default function(state = defaultState, action) {
         case constants.TYPING.POPULATE: {
             const index = _.findIndex(state, { id: action.user.id });
 
+            // S'assurer que l'utilisateur n'est pas entrain de taper avant de l'ajouter à la liste.
             if (index === -1) {
                 return update(state, {
                     $push: [action.user]
@@ -22,11 +23,14 @@ export default function(state = defaultState, action) {
         case constants.TYPING.REMOVE: {
             const index = _.findIndex(state, { id: action.user.id });
 
+            // S'assurer que l'utilisateur est entrain de taper avant de le retirer de la liste.
             if (index !== -1) {
                 return update(state, {
                     $splice: [[index, 1]]
                 });
             }
+            
+            break;
         }
     }
 

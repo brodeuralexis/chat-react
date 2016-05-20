@@ -11,6 +11,8 @@ export default function(state = defaultState, action) {
         case constants.MESSAGE.APPEND: {
             action.message.user = action.user;
 
+            // Trouve le l'endroit où le message doit être inséré.  Les messages sont trié par
+            // moment de création ("timestamp").
             const index = _.sortedLastIndexBy(state, { timestamp: action.message.timestamp });
 
             return update(state, {

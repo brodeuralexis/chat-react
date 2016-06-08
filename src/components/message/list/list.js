@@ -14,6 +14,29 @@ export default class MessageList extends React.Component {
     static propTypes = {
         messages: React.PropTypes.array.isRequired
     };
+    
+    scrollToBottom() {
+        const list = this.refs.list;
+        
+        list.scrollTop = list.scrollHeight - list.offsetHeight;
+    }
+    
+    componentDidMount() {
+        this.scrollToBottom();
+    }
+    
+    componentWillUpdate() {
+        const list = this.refs.list;
+        if (list) {
+            this.__shouldScroll = list.scrollTop === list.scrollHeight - list.offsetHeight;
+        }
+    }
+    
+    componentDidUpdate() {
+        if (this.__shouldScroll) {
+            this.scrollToBottom();
+        }
+    }
 
     render() {
         const {
@@ -21,7 +44,7 @@ export default class MessageList extends React.Component {
         } = this.props;
 
         return (
-            <div className={ styles.list }>
+            <div ref="list" className={ styles.list }>
                 <div className={ styles.messages }>
                     { messages.map((message, index) => {
                         return (
